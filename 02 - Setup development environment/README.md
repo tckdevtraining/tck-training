@@ -33,7 +33,7 @@ OS name: "linux", version: "5.4.0-80-generic", arch: "amd64", family: "unix"
 ```
 
 ### Do I need an IDE ?
-On mys side I use Intellij :
+On my side I use Intellij :
 - https://www.jetbrains.com/idea/
 
 ```
