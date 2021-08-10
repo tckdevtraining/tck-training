@@ -52,3 +52,92 @@ But it is not needed for this training. A simple text editor will be ok, you hav
 All maven commands will be executed in a shell.
 
 ## Creating the project
+First, I create a folder that will contain the development of the _Redis_ connector:
+```
+$ mkdir -p ~/dev/training/tck/redis
+$ cd ~/dev/training/tck/redis
+$ # We then create maven structure
+$ touch pom.xml
+$ mkdir -p src/main/java/org/tckdev/training/redis
+$ mkdir -p src/main/resources/org/tckdev/training/redis
+$ mkdir -p src/test/java/org/tckdev/training/redis
+```
+Edit the _pom.xml_ file and copy/past the following content:
+```
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="           http://maven.apache.org/POM/4.0.0           http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>org.tckdev.training</groupId>
+  <artifactId>redis</artifactId>
+  <version>1.0.0-SNAPSHOT</version>
+  <packaging>jar</packaging>
+  <name>Redis TCK Connector</name>
+  <description>A Talend connector to deal with Redis.</description>
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <!-- Talend Component Kit current version is 1.35.1. -->
+    <tck.version>1.35.1</tck.version>
+    <junit5.version>5.7.0</junit5.version>
+  </properties>
+  <dependencies>
+    <dependency>
+      <!-- This is the Talend Component Kit API dependency we will use to write the Redis connector. -->
+      <groupId>org.talend.sdk.component</groupId>
+      <artifactId>component-api</artifactId>
+      <version>${tck.version}</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <!-- Talend Component Kit also provided facilities for unit tests. -->
+      <groupId>org.talend.sdk.component</groupId>
+      <artifactId>component-runtime-junit</artifactId>
+      <version>${tck.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter</artifactId>
+      <version>${junit5.version}</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+  <build>
+    <extensions>
+      <extension>
+        <!-- Talend Component Kit provides a maven extension to validate development and generate some stuff. -->
+        <groupId>org.talend.sdk.component</groupId>
+        <artifactId>talend-component-maven-plugin</artifactId>
+        <version>${tck.version}</version>
+      </extension>
+    </extensions>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.8.1</version>
+        <configuration>
+          <!-- We will develop in Java 8. -->
+          <source>1.8</source>
+          <target>1.8</target>
+          <forceJavacCompilerUse>true</forceJavacCompilerUse>
+          <compilerId>javac</compilerId>
+          <fork>true</fork>
+          <compilerArgs>
+            <arg>-parameters</arg>
+          </compilerArgs>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>3.0.0-M4</version>
+        <configuration>
+          <trimStackTrace>false</trimStackTrace>
+          <runOrder>alphabetical</runOrder>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+</project>
+```
+We currently can't test the build of the project since there is no source yet.
