@@ -16,10 +16,10 @@ docker.io/library/redis:6.2.5
 - Start container with persistent storage
 
 ```
-bash~$ mkdir ~/redis_data
-bash~$ docker run --name redis-tck-training -v ~/redis_data:/data -d redis redis-server --appendonly yes -p 6379:6379
+bash~$ mkdir -p ~/redis/data
+bash~$ docker run --name redis-tck-training -p 6379:6379 -v ~/redis/data:/data -d redis redis-server --appendonly yes
 d0e6bff28e67b3d27bdc89041768f327d51cfa3590976b0f6d8c9d71f9caf8a2
-bash~$ ls ~/redis_data/
+bash~$ ls ~/redis/data/
 appendonly.aof
 bash~$ docker ps | grep redis
 d0e6bff28e67   redis   "docker-entrypoint.s…"   15 seconds ago   Up 14 seconds   6379/tcp   redis-tck-training
@@ -41,3 +41,32 @@ I clicked on _db0_ then '_Open console_' and execute few commands. To see them c
 ![](../.assets/rdm_console.png)
 
 Great ! We have a functional Redis database !
+
+## Setting container to define credentials
+
+First, stop and delete current redis container:
+```
+bash~$ docker stop redis-tck-training
+bash~$ docker rm redis-tck-training
+```
+
+As explained in dockerhub redis page, we have to define a _redis.conf_ file to define credentials
+- https://hub.docker.com/_/redis
+- https://redis.io/topics/security
+
+Create the configuration file:
+```
+bash~$ mkdir -p ~/redis/conf
+bash~$ echo "requirepass aze123_" > ~/redis/conf/redis.conf
+bash~$ echo "appendonly yes" >> ~/redis/conf/redis.conf
+```
+
+And run Redis again with this new conf:
+```
+bash~$ docker run --name redis-tck-training -p 6379:6379 -v ~/redis/conf:/usr/local/etc/redis -v ~/redis/data:/data -d redis redis-server /usr/local/etc/redis/redis.conf
+```
+
+Then try to connect with RDM:
+![](../.assets/rdm_pwd.png)
+
+We now have a _Redis_ server with a login/password.
