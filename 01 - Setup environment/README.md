@@ -1,5 +1,5 @@
 # Setup Redis back-end
-Here are some step to have a Redis database back-end locally.
+Here are some steps to have a Redis database back-end locally.
 
 ## Start a Redis docker container
 - Pull Redis 6.2.5 docker image from dockerhub
