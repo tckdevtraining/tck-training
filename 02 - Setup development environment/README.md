@@ -10,7 +10,7 @@ I use a Java Oracle implementation but should be ok with openJdk:
 - https://www.oracle.com/fr/java/technologies/javase/javase8u211-later-archive-downloads.html
 - https://openjdk.java.net/install/
 
-```
+```bash
 $ java -version
 java version "1.8.0_211"
 Java(TM) SE Runtime Environment (build 1.8.0_211-b12)
@@ -23,7 +23,7 @@ We will use maven to describe and build the project:
 
 I will not explain how to install it since it depends what operating system you're using.
 
-```
+```bash
 $ mvn --version
 Apache Maven 3.8.1 (05c21c65bdfed0f71a2f2ada8b84da59348c4c5d)
 Maven home: /opt/apache-maven/apache-maven-3.8.1
@@ -53,7 +53,7 @@ All maven commands will be executed in a shell.
 
 ## Creating the project
 First, I create a folder that will contain the development of the _Redis_ connector:
-```
+```bash
 $ mkdir -p ~/dev/training/tck/redis
 $ cd ~/dev/training/tck/redis
 $ # We then create maven structure
@@ -63,7 +63,7 @@ $ mkdir -p src/main/resources/org/tckdev/training/redis
 $ mkdir -p src/test/java/org/tckdev/training/redis
 ```
 Edit the _pom.xml_ file and copy/past the following content:
-```
+```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="           http://maven.apache.org/POM/4.0.0           http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
@@ -78,6 +78,10 @@ Edit the _pom.xml_ file and copy/past the following content:
     <!-- Talend Component Kit current version is 1.35.1. -->
     <tck.version>1.35.1</tck.version>
     <junit5.version>5.7.0</junit5.version>
+    <!-- Configuration of Talend component maven plugin -->
+    <!-- I deactivate some of default validations at first -->
+    <talend.validation.dataset>false</talend.validation.dataset>
+    <talend.validation.svg>false</talend.validation.svg>
   </properties>
   <dependencies>
     <dependency>
