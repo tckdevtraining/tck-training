@@ -14,7 +14,10 @@ The goal is to present how to develop a Talend connector that could be deployed 
 1. Setup development environment
 1. Develop a producer that will read data in back-end
 1. Deploy producer in Talend open studio
-1. Cool Talend to to help developers
+1. Improve unit test embedded Redis (https://github.com/ozimov/embedded-redis)
+1. Tools Talend to to help developers (web tester, maven plugin)
 1. Develop a sink that will write in back-Talend
 1. Presentation of Talend cloud & Remote engine
 1. Deploy tck connectors in remote engine
+1. Improve connector with services (get list of database + suggestable + @Checkable / Service de creation de connection with cache)
+1. Support several kind of data format (raw text, json, csv)
