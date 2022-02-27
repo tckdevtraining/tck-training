@@ -12,7 +12,7 @@ The goal is to present how to develop a Talend connector that could be deployed 
 ## Steps
 1. Setup a redis back-end environment
 1. Setup development environment
-1. Develop a producer that will read data in back-end
+1. Develop a producer that will read data from back-end
 1. Deploy producer in Talend open studio
 1. Improve unit test embedded Redis (https://github.com/ozimov/embedded-redis)
 1. Tools Talend to to help developers (web tester, maven plugin)
