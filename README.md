@@ -4,9 +4,9 @@ This is a training about Talend Component Kit (_TCK_) framework:
 - https://talend.github.io/component-runtime/
 
 The goal is to present how to develop a Talend connector that could be deployed in:
-- Talend studio : based eclipse platform to design / exec ETL jobs
+- Talend studio: based eclipse platform to design / exec ETL jobs
   - https://www.talend.com/fr/lp/open-studio-for-data-integration/
-- Talend Cloud : manage your datasets and build pipeline from the Cloud
+- Talend Cloud: manage your datasets and build pipeline from the Cloud
   - https://www.talend.com/ps/free-trial/
 
 ## Steps
